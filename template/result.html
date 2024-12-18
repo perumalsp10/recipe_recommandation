@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='recipe.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form action="/search" method="get">
+            <input type="text" name="keyword" placeholder="Search for a recipe..." required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <h1>Recipe Results</h1>
+
+    <div id="recipeResult" class="recipe">
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="container">
+                    <h2 style="color: #e63946;">{{ recipe.name | escape }}</h2>
+                    <div class="inc">
+                        <h4 style="color: #1d3557;">Ingredients:</h4>
+                        <ul>
+                            {% for ingredient in recipe.ingredients %}
+                                <li>{{ ingredient | escape }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="ins">
+                        <h4 style="color: #1d3557;">Instructions:</h4>
+                        <ul>
+                            {% if recipe.instructions %}
+                                {% if recipe.instructions is string %}
+                                    {% for step in recipe.instructions.split('\n') %}
+                                        {% if step.strip() %}
+                                            <li>{{ step | escape }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% elif recipe.instructions is iterable %}
+                                    {% for step in recipe.instructions %}
+                                        <li>{{ step | escape }}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>No valid instructions available.</li>
+                                {% endif %}
+                            {% else %}
+                                <li>No instructions available.</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <!-- Combine Recipe Form -->
+            <div class="combine-recipe">
+                <h3>Combine with New Ingredient</h3>
+                <form action="/combine-recipe" method="post">
+                    <input type="hidden" name="previous_recipe" value="{{ recipes[0].name }}">
+                    <input type="text" name="new_ingredient" placeholder="Add new ingredient..." required>
+                    <button type="submit">Combine</button>
+                </form>
+            </div>
+
+        {% else %}
+            <p>No recipes found.</p>
+        {% endif %}
+    </div>
+    <a href="/">Back to Search</a>
+</body>
+</html>
