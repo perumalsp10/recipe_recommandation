@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="{{ url_for('static', filename='images/e7850b8b-067d-4511-87cd-48db96a22a62.gif') }}" alt="Loading...">
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/rb_22063.png') }}" class="top-img" alt="">
+        <h1>Recipe Recommendation</h1>
+        <form id="recipeForm" action="/search" method="get">
+            <input type="text" name="keyword" placeholder="Which Recipe You want ?" required autocomplete="off">
+        </form>
+
+        <div class="cards">
+            <!-- Existing Recipe Cards -->
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Chicken') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/thin-chicken-roasted-sticks-served-with-tomato-rosemary-sauce_114579-2019.jpg" alt="Butter Chicken">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Chicken</h3>  
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Pav Bhaji') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/delicious-lobster-gourmet-seafood_23-2151713033.jpg" alt="Pav Bhaji">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Pav Bhaji</h3>  <!-- Updated clickable recipe name -->
+
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Shawarma') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/delicious-indian-food-tray_23-2148723505.jpg" alt="Chicken Shawarma">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Shawarma</h3>  <!-- Updated clickable recipe name -->
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Noodles') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg" alt="Noodles">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Noodles</h3>  <!-- Updated clickable recipe name -->
+                        
+                    </div>
+                </a>
+            </div>
+
+            <!-- New Recipe Cards -->
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Palak Paneer') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19744.jpg?ga=GA1.1.1524805583.1726683816&semt=ais_hybrid" alt="Palak Paneer">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Palak Paneer</h3>  <!-- Updated clickable recipe name -->
+                       
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Rice') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/healthy-vegetable-soup-cooked-with-fresh-meat-generated-by-ai_188544-35382.jpg?ga=GA1.1.1524805583.1726683816&semt=ais_hybrid" alt="Chicken Rice">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Rice</h3>  <!-- Updated clickable recipe name -->
+                       
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Egg Rice') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/side-view-rice-garnish-with-fried-onion-carrot-greens-chili-pepper-table_141793-5069.jpg?ga=GA1.1.1524805583.1726683816&semt=ais_hybrid" alt="Egg Rice">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Egg Rice</h3>  <!-- Updated clickable recipe name -->
+                     
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('search_recipe', recipe_name='Kaalan') }}">
+                    <div class="card-img">
+                        <img src="https://img.freepik.com/free-photo/pre-prepared-food-showcasing-ready-eat-delicious-meals-go_23-2151431678.jpg?ga=GA1.1.1524805583.1726683816&semt=ais_hybrid" alt="Kaalan Tika">
+                    </div>
+                    <div class="card-cont">
+                        <h3>Kaalan</h3>  <!-- Updated clickable recipe name -->
+                    
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lordicon script for animated icons -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    <!-- Preloader Script -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                let loader = document.querySelector('.preloader');
+                loader.style.display = 'none';
+                document.body.style.overflow = "auto";
+            }, 3000); // Adjust the delay as needed
+        });
+    </script>
+</body>
+</html>
